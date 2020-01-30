@@ -32,4 +32,8 @@ async def on_message(message):
         await message.channel.send(response)
         logger.info('Sending Message...')
 
+@client.event
+async def on_error(event, *args, **kwargs):
+    logger.error(f'Error Occured: {args[0]}\n')
+
 client.run(TOKEN)
