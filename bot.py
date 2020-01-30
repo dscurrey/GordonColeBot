@@ -16,4 +16,8 @@ async def on_ready():
             break
     print(f'{client.user} is connected to:\n'
     f'{guild.name} (id: {guild.id})')
+
+    members = '\n - '.join([member.name for member in guild.members])
+    print(f'Guild Members:\n - {members}')
+
 client.run(TOKEN)
