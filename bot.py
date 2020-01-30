@@ -3,11 +3,21 @@ import discord
 from dotenv import load_dotenv
 
 load_dotenv()
-token = os.getenv('DISCORD_TOKEN')
+TOKEN = os.getenv('DISCORD_TOKEN')
+GUILD = os.getenv('DISCORD_GUILD')
+
 client = discord.Client()
 
 @client.event
 async def on_ready():
-    print(f'{client.user} has connected.')
+    for guild in client.guilds:
+        print(guild.name)
+        if guild.name == GUILD:
+            break
+    print(f'{client.user} is connected to:\n'
+    f'{guild.name} (id: {guild.id})')
 
-client.run(token)
+    members = '\n - '.join([member.name for member in guild.members])
+    print(f'Guild Members:\n - {members}')
+
+client.run(TOKEN)
