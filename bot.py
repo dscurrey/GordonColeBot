@@ -1,6 +1,7 @@
 import os
 import discord
 from dotenv import load_dotenv
+import random
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -10,14 +11,22 @@ client = discord.Client()
 
 @client.event
 async def on_ready():
-    for guild in client.guilds:
-        print(guild.name)
-        if guild.name == GUILD:
-            break
-    print(f'{client.user} is connected to:\n'
-    f'{guild.name} (id: {guild.id})')
+    guild = discord.utils.get(client.guilds, name=GUILD)
+    print(f'{client.user} is connected.')
 
-    members = '\n - '.join([member.name for member in guild.members])
-    print(f'Guild Members:\n - {members}')
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+    
+    gordonQuotes = [
+        'TAKE ANOTHER LOOK SONNY, IT\'S GONNA HAPPEN AGAIN',
+        'YOU ARE WITNESSING A FRONT THREE QUARTER VIEW OF TWO ADULTS SHARING A TENDER MOMENT',
+        'YOU REMIND ME TODAY OF A SMALL MEXICAN CHIHUAHUA'
+    ]
+
+    if "gordon" in message.content.lower():
+        response = random.choice(gordonQuotes)
+        await message.channel.send(response)
 
 client.run(TOKEN)
