@@ -1,8 +1,4 @@
-FROM python:3.7-alpine
-
-RUN adduser -D gordoncole
-
-WORKDIR /home/gordoncole
+FROM python:3
 
 COPY requirements.txt requirements.txt
 RUN python -m venv venv
