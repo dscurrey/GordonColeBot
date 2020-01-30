@@ -1,7 +1,7 @@
 import os
 import discord
 from dotenv import load_dotenv
-import random
+import quotegenerator
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -26,7 +26,7 @@ async def on_message(message):
     ]
 
     if "gordon" in message.content.lower():
-        response = random.choice(gordonQuotes)
+        response = quotegenerator.gc_quote()
         await message.channel.send(response)
 
 client.run(TOKEN)
