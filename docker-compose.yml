@@ -5,5 +5,16 @@ services:
     build: .
     restart: always
     environment:
-      - DISCORD_TOKEN=THISISADISCORD.TOKEN
-      - DISCORD_GUILD=THISISAGUILD
+      - DISCORD_TOKEN=DISCORDTOKEN
+      - DISCORD_GUILD=DISCORDGUILD
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+
+  watchtower:
+    image: v2tec/watchtower:latest
+    command: --cleanup --label-enable --schedule="0 2 * * *"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    labels:
+      com.centurylinklabs.watchtower.enable: "true"
+    restart: unless-stopped
