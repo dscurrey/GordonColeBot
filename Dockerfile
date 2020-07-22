@@ -1,13 +1,12 @@
-FROM python:3
+FROM python:3.8.5-slim-buster
 
 WORKDIR /gordoncole
 
-COPY bot.py bot.py
-COPY quotegenerator.py quotegenerator.py
-COPY quotes.txt quotes.txt
 COPY requirements.txt requirements.txt
-VOLUME /gordoncole
-
 RUN pip install -r requirements.txt
+
+VOLUME [ "/gordoncolebot" ]
+
+COPY . .
 
 CMD [ "python", "./bot.py" ]
