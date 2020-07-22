@@ -15,6 +15,10 @@ logger.setLevel(logging.INFO)
 handler = logging.FileHandler(filename='gordon.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
+handler = logging.StreamHandler()
+handler.setLevel(logging.INFO)
+handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+logger.addHandler(handler)
 
 @client.event
 async def on_ready():
@@ -30,7 +34,7 @@ async def on_message(message):
     if "gordon" in message.content.lower():
         response = quotegenerator.gc_quote()
         await message.channel.send(response)
-        logger.info('Sending Message...')
+        logger.info('[{}]\tSending Quote...'.format(message.author))
 
 @client.event
 async def on_error(event, *args, **kwargs):
