@@ -1,0 +1,9 @@
+version: '3.5'
+
+services:
+  bot:
+    build: .
+    restart: always
+    environment:
+      - DISCORD_TOKEN=THISISADISCORD.TOKEN
+      - DISCORD_GUILD=THISISAGUILD
