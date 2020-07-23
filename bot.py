@@ -26,7 +26,7 @@ async def on_message(message):
     if message.author == client.user:
         return
 
-    if "gordon" in message.content.lower() or "fbi" in message.content.lower:
+    if "gordon" in message.content.lower():
         response = quotegenerator.gc_quote()
         await message.channel.send(response)
         logger.info('Sending Message...')
