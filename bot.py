@@ -23,8 +23,7 @@ logger.addHandler(handler)
 @client.event
 async def on_ready():
     guild = discord.utils.get(client.guilds, name=GUILD)
-    print(f'{client.user} is connected.')
-    logger.info('Connected.')
+    logger.info(f'{client.user} Connected.')
 
 @client.event
 async def on_message(message):
